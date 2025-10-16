@@ -1,0 +1,73 @@
+{
+  "CORE_SETTINGS": {
+    "BOT_TOKEN": "YOUR_TELEGRAM_BOT_TOKEN_HERE",
+    "BOT_USERNAME": "YourProBotName_bot",
+    "PREFIX": "/",
+    "ENVIRONMENT": "production",
+    "STARTUP_MESSAGE_ENABLED": true
+  },
+  
+  "SECURITY": {
+    "OWNER_ID": "YOUR_TELEGRAM_USER_ID",
+    "ADMIN_IDS": [
+      "ANOTHER_ADMIN_ID_1",
+      "ANOTHER_ADMIN_ID_2"
+    ],
+    "GLOBAL_WHITELIST": [],
+    "BLOCKED_USERS": []
+  },
+  
+  "DEPLOYMENT": {
+    "METHOD": "long_polling", 
+    "WEBHOOK_URL": "https://yourdomain.com/webhook/telegraf",
+    "WEBHOOK_PORT": 3000,
+    "DOMAIN_CERT_PATH": "/path/to/fullchain.pem",
+    "DOMAIN_KEY_PATH": "/path/to/privkey.pem"
+  },
+  
+  "DATABASE": {
+    "ENABLED": true,
+    "TYPE": "mongodb",
+    "URI": "mongodb://user:password@localhost:27017/proBotDB?authSource=admin",
+    "COLLECTION_PREFIX": "bot_"
+  },
+  
+  "LOGGING": {
+    "LEVEL": "info",
+    "CHAT_ID": "-100123456789",
+    "ERROR_LOG_TO_TG": true
+  },
+  
+  "RATE_LIMIT": {
+    "ENABLED": true,
+    "WINDOW_MS": 3000,
+    "MAX_REQUESTS_PER_USER": 3,
+    "BYPASS_ADMINS": true
+  },
+  
+  "MODERATION": {
+    "DEFAULT_COOLDOWN_SECONDS": 5,
+    "MAX_BAN_DURATION_HOURS": 720,
+    "RESTRICTED_WORDS_ENABLED": true,
+    "WELCOME_MESSAGE_ENABLED": true,
+    "WELCOME_CHAT_ID": "-100200300400"
+  },
+  
+  "EXTERNAL_APIS": {
+    "WEATHER_API": {
+      "KEY": "YOUR_WEATHER_API_KEY_HERE",
+      "BASE_URL": "https://api.weatherapi.com/v1"
+    },
+    "TRANSLATE_API": {
+      "ENABLED": false,
+      "KEY": "YOUR_TRANSLATE_API_KEY_HERE"
+    }
+  },
+  
+  "MESSAGES": {
+    "START_MESSAGE": "স্বাগতম! আমি একটি প্রফেশনাল টেলিগ্রাম বট।",
+    "HELP_MESSAGE": "আমার কমান্ডগুলি দেখতে /commandlist ব্যবহার করুন।",
+    "ERROR_GENERAL": "একটি ত্রুটি ঘটেছে! অনুগ্রহ করে পরে আবার চেষ্টা করুন।",
+    "ERROR_PERMISSION_DENIED": "ক্ষমা করবেন, এই কমান্ডটি ব্যবহার করার অনুমতি আপনার নেই।"
+  }
+}
