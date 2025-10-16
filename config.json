@@ -1,16 +1,16 @@
 {
   "CORE_SETTINGS": {
-    "BOT_TOKEN": "YOUR_TELEGRAM_BOT_TOKEN_HERE",
-    "BOT_USERNAME": "YourProBotName_bot",
+    "BOT_TOKEN": "8034233581:AAFF0RuQnkNWGHiUvRXBnh89aP7Q52B2PgE",
+    "BOT_USERNAME": "likhon_premium_bot",
     "PREFIX": "/",
     "ENVIRONMENT": "production",
     "STARTUP_MESSAGE_ENABLED": true
   },
   
   "SECURITY": {
-    "OWNER_ID": "YOUR_TELEGRAM_USER_ID",
+    "OWNER_ID": "rx_rihad",
     "ADMIN_IDS": [
-      "ANOTHER_ADMIN_ID_1",
+      "7933110913",
       "ANOTHER_ADMIN_ID_2"
     ],
     "GLOBAL_WHITELIST": [],
