@@ -1,1 +1,24 @@
+{
+  "name": "my-telegram-bot",
+  "version": "1.0.0",
+  "description": "A Node.js bot for Telegram with command and event handlers.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "keywords": [
+    "telegram",
+    "bot",
+    "node",
+    "javascript",
+    "tg"
+  ],
+  "author": "Your Name",
+  "license": "ISC",
+  "dependencies": {
+    "node-telegram-bot-api": "^0.65.1",
+    "dotenv": "^16.4.5"
+  }
+}
 
