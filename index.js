@@ -1,19 +1,20 @@
 const fs = require('fs');
 const path = require('path');
 const TelegramBot = require('node-telegram-bot-api');
-// require('dotenv').config(); // <-- .env এবং dotenv বাদ দেওয়া হলো
+// .env loading is removed as requested
+// require('dotenv').config(); 
 
+// ----------------------------------------------------
 // --- Configuration and Command Loading ---
 
 const configPath = path.join(__dirname, 'config.json');
 
 // config.json ফাইলটি লোড করা হচ্ছে।
-// যদি ফাইলটি না পাওয়া যায়, তবে এটি Node.js এ একটি Error দেবে।
 const config = require(configPath);
 
-// config.json থেকে টোকেন এবং প্রিফিক্স লোড করা হচ্ছে
-const TOKEN = config.botToken; // <--- config.json থেকে টোকেন লোড
-const prefix = config.prefix || '/';
+// config.json এর CORE_SETTINGS থেকে টোকেন এবং প্রিফিক্স লোড করা হচ্ছে
+const TOKEN = config.CORE_SETTINGS.BOT_TOKEN; // টোকেন লোডিং আপডেট করা হয়েছে
+const prefix = config.CORE_SETTINGS.PREFIX || '/'; // প্রিফিক্স লোডিং আপডেট করা হয়েছে
 
 const commandFiles = fs.readdirSync(path.join(__dirname, 'src', 'cmds')).filter(file => file.endsWith('.js'));
 const allCommands = [];
@@ -32,15 +33,17 @@ for (const file of commandFiles) {
 const messageEventPath = path.join(__dirname, 'src', 'events', 'message.js');
 const messageEventHandler = require(messageEventPath);
 
+// ----------------------------------------------------
 // --- Bot Initialization ---
 
 if (!TOKEN) {
-    console.error("FATAL: 'botToken' is not set in config.json! Please check your configuration.");
+    console.error("FATAL: 'BOT_TOKEN' is not set under CORE_SETTINGS in config.json! Please check your configuration.");
     process.exit(1);
 }
 
 const bot = new TelegramBot(TOKEN, { polling: true });
 
+// ----------------------------------------------------
 // --- Event Listeners ---
 
 bot.on('polling_error', (error) => {
@@ -48,6 +51,7 @@ bot.on('polling_error', (error) => {
 });
 
 bot.on('message', (msg) => {
+    // message utility অবজেক্ট
     const messageUtil = {
         reply: (text) => bot.sendMessage(msg.chat.id, text, { reply_to_message_id: msg.message_id })
     };
@@ -65,7 +69,7 @@ bot.on('message', (msg) => {
             bot,
             allCommands,
             prefix,
-            {}
+            {} // Cooldowns object
         );
     } catch (error) {
         console.error("Error in Message Handler:", error);
