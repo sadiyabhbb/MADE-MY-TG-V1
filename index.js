@@ -1,12 +1,18 @@
 const fs = require('fs');
 const path = require('path');
 const TelegramBot = require('node-telegram-bot-api');
-require('dotenv').config();
+// require('dotenv').config(); // <-- .env এবং dotenv বাদ দেওয়া হলো
 
 // --- Configuration and Command Loading ---
 
 const configPath = path.join(__dirname, 'config.json');
+
+// config.json ফাইলটি লোড করা হচ্ছে।
+// যদি ফাইলটি না পাওয়া যায়, তবে এটি Node.js এ একটি Error দেবে।
 const config = require(configPath);
+
+// config.json থেকে টোকেন এবং প্রিফিক্স লোড করা হচ্ছে
+const TOKEN = config.botToken; // <--- config.json থেকে টোকেন লোড
 const prefix = config.prefix || '/';
 
 const commandFiles = fs.readdirSync(path.join(__dirname, 'src', 'cmds')).filter(file => file.endsWith('.js'));
@@ -28,9 +34,8 @@ const messageEventHandler = require(messageEventPath);
 
 // --- Bot Initialization ---
 
-const TOKEN = process.env.BOT_TOKEN;
 if (!TOKEN) {
-    console.error("FATAL: BOT_TOKEN is not set in the .env file!");
+    console.error("FATAL: 'botToken' is not set in config.json! Please check your configuration.");
     process.exit(1);
 }
 
@@ -66,4 +71,3 @@ bot.on('message', (msg) => {
         console.error("Error in Message Handler:", error);
     }
 });
-
